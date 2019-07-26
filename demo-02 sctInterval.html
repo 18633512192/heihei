@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        p{
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 200px;
+            font-size: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>0</h1>
+    <button id="btn1">开始计时</button>
+    <button id="btn2">结束及时</button>
+
+    <p><span class="seconds">5</span><br>秒后跳转到嘿嘿嘿</p>
+
+    <script>
+        // 下面我们来实现一个效果，让控制台输出每隔1秒按顺序输出正整数，从数字1开始输出
+        var n = 1;
+        function showNumber(){
+            console.log(n);
+            n++;
+        }
+        setInterval(showNumber,1000);
+        showNumber();   //调用函数，可以在页面加载时直接输出1。
+
+
+        // 我们还可以继续用按钮控制计时器，这次我们定义一个h1标签存放数字，再用两个按钮来实现“开始计数”和“停止计数”功能
+        var btn1 = document.querySelector("#btn1");
+        var btn2 = document.querySelector("#btn2");
+        var h1 = document.querySelector("h1");
+        var t;
+        btn1.onclick = function(){
+            clearInterval(t);
+            t = setInterval(function(){
+                var number = Number(h1.innerHTML);
+                number++;
+                h1.innerHTML = number;
+            },300);
+        }
+        btn2.onclick = function(){
+            clearInterval(t);
+        }
+
+
+        // 在网页中我们经常会看到指定秒数跳转到其他网页，我们可以用计时器方法来实现这个功能
+        var seconds = document.querySelector(".seconds");
+        setInterval(function(){
+            var s = Number(seconds.innerHTML);
+            s--;
+            seconds.innerHTML = s;
+            if(s === 0){
+                location.href = "啦啦啦.html";
+            }
+        },1000)
+    </script>
+</body>
+</html>
